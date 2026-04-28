@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/spf13/cobra"
 	"github.com/codref/stdix/internal/config"
+	"github.com/spf13/cobra"
 )
 
 func initCmd() *cobra.Command {
