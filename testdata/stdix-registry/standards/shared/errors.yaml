@@ -1,0 +1,27 @@
+id: shared.errors
+title: Shared Error Handling Standard
+version: 1.0.0
+
+tags:
+  - errors
+  - error-handling
+  - resilience
+
+applies_when:
+  - handling errors in any language or service
+  - designing error responses for APIs
+  - propagating errors across module boundaries
+
+rules:
+  - Never swallow errors silently; always handle or propagate.
+  - Wrap errors with context at each layer boundary.
+  - Distinguish between user-facing errors (safe to display) and internal errors (should be logged, not shown).
+  - Return errors as values, not exceptions, where the language supports it.
+  - Use sentinel errors or typed errors for errors that callers need to inspect.
+  - API error responses must include a machine-readable code and a human-readable message.
+
+outputs:
+  agents: true
+  claude: true
+  copilot: true
+  cursor: true

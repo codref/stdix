@@ -1,0 +1,7 @@
+# Version is not valid semver (missing patch component).
+id: fixture.bad-semver
+title: A Standard With Bad Semver
+version: "v1"
+
+rules:
+  - Do something useful.

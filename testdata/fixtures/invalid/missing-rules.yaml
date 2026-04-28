@@ -1,0 +1,4 @@
+# Missing the required 'rules' field.
+id: fixture.missing-rules
+title: A Standard Without Rules
+version: 1.0.0

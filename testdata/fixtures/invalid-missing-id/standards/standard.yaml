@@ -1,0 +1,6 @@
+# Registry with a single invalid standard (missing id) — used by Load() tests.
+title: A Standard Without An ID
+version: 1.0.0
+
+rules:
+  - Do something useful.

@@ -1,0 +1,9 @@
+registry:
+  source: local
+  db: ./testdata/registry.db
+project: {}
+outputs:
+  agents: false      # AGENTS.md
+  claude: false     # CLAUDE.md
+  copilot: true    # .github/copilot-instructions.md
+  cursor: false     # .cursor/rules/stdix.mdc

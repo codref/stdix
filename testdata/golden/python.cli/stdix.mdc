@@ -1,0 +1,18 @@
+<!-- stdix:start -->
+---
+description: Python CLI Standard
+globs: "**/*.py"
+alwaysApply: true
+---
+
+## Python CLI Standard
+
+- Use Typer for CLI command definitions.
+- Use Rich for terminal output.
+- Use pathlib instead of os.path.
+- Use pytest for tests.
+- Use ruff for linting and formatting.
+- Every command must support --help.
+- Long-running commands should show progress indicators.
+- User-facing errors should be formatted clearly.
+<!-- stdix:end -->

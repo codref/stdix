@@ -1,0 +1,30 @@
+id: python.testing
+title: Python Testing Standard
+version: 1.0.0
+language: python
+
+tags:
+  - testing
+  - pytest
+  - unit-test
+  - quality
+
+applies_when:
+  - writing tests for a Python project
+  - adding unit tests
+  - setting up a test suite
+
+rules:
+  - Use pytest as the test framework.
+  - Place tests in a tests/ directory mirroring the source layout.
+  - Name test files with a test_ prefix.
+  - Use fixtures for shared setup; avoid class-based test suites.
+  - Assert on specific values, not just truthiness.
+  - "Run tests with coverage: pytest --cov."
+  - Parametrize repeated test logic with @pytest.mark.parametrize.
+
+outputs:
+  agents: true
+  claude: true
+  copilot: true
+  cursor: true

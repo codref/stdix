@@ -1,0 +1,31 @@
+id: node.cli
+title: Node.js CLI Standard
+version: 1.0.0
+language: node
+
+tags:
+  - cli
+  - commander
+  - terminal
+  - command-line
+  - node
+
+applies_when:
+  - building a CLI application in Node.js
+  - creating terminal tools with TypeScript
+  - adding command-line interfaces to a Node project
+
+rules:
+  - Use Commander.js for command definitions.
+  - Use chalk for coloured terminal output.
+  - Use ora for progress spinners.
+  - Export a main() function and call it only from the CLI entry point.
+  - Handle process.exit() only at the top-level entry point.
+  - Ship a bin entry in package.json for executable distribution.
+  - Support --help and --version automatically via Commander defaults.
+
+outputs:
+  agents: true
+  claude: true
+  copilot: true
+  cursor: true

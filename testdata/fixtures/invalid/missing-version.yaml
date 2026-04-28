@@ -1,0 +1,6 @@
+# Missing the required 'version' field.
+id: fixture.missing-version
+title: A Standard Without Version
+
+rules:
+  - Do something useful.

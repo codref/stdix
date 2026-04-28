@@ -1,0 +1,7 @@
+# Registry with a single invalid standard (bad semver) — used by Load() tests.
+id: fixture.bad-semver
+title: A Standard With Bad Semver
+version: "v1"
+
+rules:
+  - Do something useful.

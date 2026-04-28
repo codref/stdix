@@ -1,0 +1,6 @@
+# Missing the required 'id' field.
+title: A Standard Without An ID
+version: 1.0.0
+
+rules:
+  - Do something useful.

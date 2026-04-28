@@ -1,0 +1,6 @@
+# Missing the required 'title' field.
+id: fixture.missing-title
+version: 1.0.0
+
+rules:
+  - Do something useful.

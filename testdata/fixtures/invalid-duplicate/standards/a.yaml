@@ -1,0 +1,8 @@
+# First file — valid standard with id python.cli.
+id: python.cli
+title: Python CLI Standard
+version: 1.0.0
+language: python
+
+rules:
+  - Use Typer.

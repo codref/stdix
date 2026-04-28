@@ -1,0 +1,30 @@
+id: go.cli
+title: Go CLI Standard
+version: 1.0.0
+language: go
+
+tags:
+  - cli
+  - cobra
+  - terminal
+  - command-line
+
+applies_when:
+  - building a CLI application in Go
+  - creating Go command-line tools
+  - adding subcommands to a Go binary
+
+rules:
+  - Use Cobra for CLI command definitions.
+  - Define each subcommand in its own file under cmd/<name>/cmd/.
+  - Use os.Exit only in main(); never in library or command code.
+  - Return errors from RunE, not Run.
+  - Use pflag types for flags; avoid raw string parsing.
+  - Support --help on every command automatically via Cobra defaults.
+  - Use tabwriter for aligned tabular output.
+
+outputs:
+  agents: true
+  claude: true
+  copilot: true
+  cursor: true

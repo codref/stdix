@@ -1,0 +1,4 @@
+# Registry with a single invalid standard (missing rules) — used by Load() tests.
+id: fixture.missing-rules
+title: A Standard Without Rules
+version: 1.0.0

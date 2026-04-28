@@ -1,0 +1,27 @@
+id: shared.logging
+title: Shared Logging Standard
+version: 1.0.0
+
+tags:
+  - logging
+  - observability
+  - structured-logging
+
+applies_when:
+  - adding logging to any service or application
+  - implementing structured log output
+  - integrating with log aggregation systems
+
+rules:
+  - Use structured log output (key=value or JSON lines).
+  - "Include a consistent set of fields on every log line: timestamp, level, service, message."
+  - Do not log sensitive data (passwords, tokens, PII).
+  - "Use log levels consistently: DEBUG for dev, INFO for normal operations, WARN for recoverable issues, ERROR for failures."
+  - Emit errors with enough context to diagnose without a debugger.
+  - Avoid log statements inside tight loops.
+
+outputs:
+  agents: true
+  claude: true
+  copilot: true
+  cursor: true

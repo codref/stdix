@@ -1,0 +1,8 @@
+# Second file — duplicate id python.cli (should trigger duplicate ID error).
+id: python.cli
+title: Python CLI Standard (duplicate)
+version: 1.0.0
+language: python
+
+rules:
+  - This is a duplicate and should fail validation.

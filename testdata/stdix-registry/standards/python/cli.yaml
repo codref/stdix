@@ -1,0 +1,30 @@
+id: python.cli
+title: Python CLI Standard
+version: 1.0.0
+language: python
+
+tags:
+  - cli
+  - terminal
+  - command-line
+
+applies_when:
+  - building a CLI application
+  - creating terminal commands
+  - adding command-line interfaces
+
+rules:
+  - Use Typer for CLI command definitions.
+  - Use Rich for terminal output.
+  - Use pathlib instead of os.path.
+  - Use pytest for tests.
+  - Use ruff for linting and formatting.
+  - Every command must support --help.
+  - Long-running commands should show progress indicators.
+  - User-facing errors should be formatted clearly.
+
+outputs:
+  agents: true
+  claude: true
+  copilot: true
+  cursor: true

@@ -1,0 +1,87 @@
+# Reference GitHub Actions workflow for a stdix registry repository.
+# Copy this file to .github/workflows/registry.yml in your registry repo.
+#
+# This workflow assumes:
+# - The registry root is the repository root (standards/ is at ./standards/)
+# - stdix-build binaries are published as GitHub Release assets from
+#   github.com/stdix/stdix (same naming convention as install.sh)
+# - REGISTRY_TOKEN secret is a fine-grained token with contents:write
+#   permission on the registry repo (needed to create releases)
+
+name: Registry CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    name: Validate standards
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download stdix-build
+        run: |
+          TAG=$(curl -fsSL https://api.github.com/repos/stdix/stdix/releases/latest \
+            | grep '"tag_name"' | head -1 \
+            | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/')
+          curl -fsSL -o /tmp/stdix-build \
+            "https://github.com/stdix/stdix/releases/download/${TAG}/stdix-build-linux-amd64"
+          chmod +x /tmp/stdix-build
+
+      - name: Validate
+        run: /tmp/stdix-build validate --registry .
+
+  build:
+    name: Build and release registry.db
+    runs-on: ubuntu-latest
+    needs: validate
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download stdix-build
+        run: |
+          TAG=$(curl -fsSL https://api.github.com/repos/stdix/stdix/releases/latest \
+            | grep '"tag_name"' | head -1 \
+            | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/')
+          curl -fsSL -o /tmp/stdix-build \
+            "https://github.com/stdix/stdix/releases/download/${TAG}/stdix-build-linux-amd64"
+          chmod +x /tmp/stdix-build
+
+      - name: Compute registry version
+        id: version
+        # Use short commit SHA as version; replace with semver tag if you tag releases.
+        run: echo "version=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Build registry.db
+        run: |
+          /tmp/stdix-build build \
+            --registry . \
+            --out registry.db \
+            --version "${{ steps.version.outputs.version }}"
+
+      - name: Compute checksum
+        run: sha256sum registry.db > registry.db.sha256
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="latest"
+          # Delete old "latest" release if present (rolling release pattern)
+          gh release delete "$TAG" --yes 2>/dev/null || true
+          git tag -f "$TAG"
+          git push -f origin "$TAG"
+          gh release create "$TAG" \
+            --title "Latest registry.db" \
+            --notes "Auto-built from commit ${{ github.sha }}" \
+            registry.db \
+            registry.db.sha256
