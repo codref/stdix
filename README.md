@@ -85,7 +85,10 @@ stdix apply python.cli
 # 5. Refresh all applied standards after a sync
 stdix deploy
 
-# 6. Verify your setup
+# 6. Install the agent prompt for creating new standards
+stdix scaffold
+
+# 7. Verify your setup
 stdix doctor
 ```
 
@@ -128,6 +131,7 @@ local registry.
 | `stdix apply <id>` | Inject a standard's rules into agent files |
 | `stdix deploy` | Re-apply all standards in `.stdix.yaml` to agent files |
 | `stdix push <yaml>` | Push a standard YAML to the registry repo via GitHub API |
+| `stdix scaffold` | Install the Copilot agent prompt for creating new standards |
 | `stdix doctor` | Check config, db, and registry reachability |
 
 **`stdix match` flags**
