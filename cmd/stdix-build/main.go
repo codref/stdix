@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/stdix/stdix/internal/db"
-	"github.com/stdix/stdix/internal/registry"
-	"github.com/stdix/stdix/internal/search"
+	"github.com/codref/stdix/internal/db"
+	"github.com/codref/stdix/internal/registry"
+	"github.com/codref/stdix/internal/search"
 )
 
 func main() {

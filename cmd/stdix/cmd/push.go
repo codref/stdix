@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"github.com/stdix/stdix/internal/github"
+	"github.com/codref/stdix/internal/github"
 	"gopkg.in/yaml.v3"
 )
 

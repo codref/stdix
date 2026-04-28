@@ -3,9 +3,9 @@ package search_test
 import (
 	"testing"
 
-	"github.com/stdix/stdix/internal/db"
-	"github.com/stdix/stdix/internal/registry"
-	"github.com/stdix/stdix/internal/search"
+	"github.com/codref/stdix/internal/db"
+	"github.com/codref/stdix/internal/registry"
+	"github.com/codref/stdix/internal/search"
 )
 
 // buildDB creates a minimal DB from hand-crafted standards.

@@ -1,11 +1,11 @@
 #!/usr/bin/env sh
 # stdix installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/stdix/stdix/main/install.sh | sh
+# Usage: curl -fsSL https://raw.githubusercontent.com/codref/stdix/main/install.sh | sh
 # Override install directory: INSTALL_DIR=/usr/local/bin sh install.sh
 
 set -e
 
-REPO="stdix/stdix"
+REPO="codref/stdix"
 INSTALL_DIR="${INSTALL_DIR:-$HOME/.local/bin}"
 
 # ── Detect OS and arch ────────────────────────────────────────────────────────

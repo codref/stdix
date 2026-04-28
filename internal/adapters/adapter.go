@@ -1,6 +1,6 @@
 package adapters
 
-import "github.com/stdix/stdix/internal/db"
+import "github.com/codref/stdix/internal/db"
 
 // Adapter generates agent-specific instruction content for a standard.
 type Adapter interface {

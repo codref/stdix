@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/stdix/stdix/internal/config"
-	"github.com/stdix/stdix/internal/db"
+	"github.com/codref/stdix/internal/config"
+	"github.com/codref/stdix/internal/db"
 )
 
 func doctorCmd() *cobra.Command {

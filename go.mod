@@ -1,4 +1,4 @@
-module github.com/stdix/stdix
+module github.com/codref/stdix
 
 go 1.25.5
 

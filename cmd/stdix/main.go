@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/stdix/stdix/cmd/stdix/cmd"
+	"github.com/codref/stdix/cmd/stdix/cmd"
 )
 
 func main() {

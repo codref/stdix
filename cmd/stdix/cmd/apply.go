@@ -6,10 +6,10 @@ import (
 	"path/filepath"
 
 	"github.com/spf13/cobra"
-	"github.com/stdix/stdix/internal/adapters"
-	"github.com/stdix/stdix/internal/config"
-	"github.com/stdix/stdix/internal/db"
-	"github.com/stdix/stdix/internal/generator"
+	"github.com/codref/stdix/internal/adapters"
+	"github.com/codref/stdix/internal/config"
+	"github.com/codref/stdix/internal/db"
+	"github.com/codref/stdix/internal/generator"
 )
 
 func applyCmd() *cobra.Command {

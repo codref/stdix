@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/stdix/stdix/internal/db"
+	"github.com/codref/stdix/internal/db"
 )
 
 // CursorAdapter generates content for .cursor/rules/stdix.mdc (MDC format).

@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/stdix/stdix/internal/registry"
+	"github.com/codref/stdix/internal/registry"
 )
 
 // Metadata holds registry-level information embedded in every registry.db.

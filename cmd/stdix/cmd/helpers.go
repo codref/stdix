@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/stdix/stdix/internal/config"
+	"github.com/codref/stdix/internal/config"
 )
 
 // loadConfig loads .stdix.yaml from dir, returning a default config on error.

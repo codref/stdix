@@ -4,7 +4,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/stdix/stdix/internal/db"
+	"github.com/codref/stdix/internal/db"
 )
 
 // LangBonus is added to the BM25 score when the query language matches a standard.

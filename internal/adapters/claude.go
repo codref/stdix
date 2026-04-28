@@ -1,6 +1,6 @@
 package adapters
 
-import "github.com/stdix/stdix/internal/db"
+import "github.com/codref/stdix/internal/db"
 
 // ClaudeAdapter generates content for CLAUDE.md.
 type ClaudeAdapter struct{}

@@ -1,6 +1,6 @@
 package adapters
 
-import "github.com/stdix/stdix/internal/db"
+import "github.com/codref/stdix/internal/db"
 
 // CopilotAdapter generates content for .github/copilot-instructions.md.
 type CopilotAdapter struct{}

@@ -5,7 +5,7 @@ import (
 	"text/tabwriter"
 
 	"github.com/spf13/cobra"
-	"github.com/stdix/stdix/internal/db"
+	"github.com/codref/stdix/internal/db"
 )
 
 func listCmd() *cobra.Command {

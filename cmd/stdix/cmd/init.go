@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"github.com/stdix/stdix/internal/config"
+	"github.com/codref/stdix/internal/config"
 )
 
 func initCmd() *cobra.Command {

@@ -43,13 +43,13 @@ Applied rules are written inside managed blocks that are updated in place on sub
 ## Installation
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/stdix/stdix/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/codref/stdix/main/install.sh | sh
 ```
 
 Installs `stdix` to `$HOME/.local/bin`. To install globally:
 
 ```sh
-sudo INSTALL_DIR=/usr/local/bin sh <(curl -fsSL https://raw.githubusercontent.com/stdix/stdix/main/install.sh)
+sudo INSTALL_DIR=/usr/local/bin sh <(curl -fsSL https://raw.githubusercontent.com/codref/stdix/main/install.sh)
 ```
 
 The script detects your OS and architecture, downloads the matching binary from
@@ -58,7 +58,7 @@ the latest GitHub Release, verifies the SHA-256 checksum, and prints the next st
 ### Build from source
 
 ```sh
-git clone https://github.com/stdix/stdix
+git clone https://github.com/codref/stdix
 cd stdix
 make build          # produces bin/stdix and bin/stdix-build
 ```

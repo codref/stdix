@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/stdix/stdix/internal/generator"
+	"github.com/codref/stdix/internal/generator"
 )
 
 const testContent = "## My Standard\n\n- Rule one.\n- Rule two."

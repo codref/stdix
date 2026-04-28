@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 
 	"github.com/spf13/cobra"
-	"github.com/stdix/stdix/internal/db"
-	"github.com/stdix/stdix/internal/generator"
+	"github.com/codref/stdix/internal/db"
+	"github.com/codref/stdix/internal/generator"
 )
 
 func deployCmd() *cobra.Command {

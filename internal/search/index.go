@@ -1,7 +1,7 @@
 package search
 
 import (
-	"github.com/stdix/stdix/internal/registry"
+	"github.com/codref/stdix/internal/registry"
 )
 
 // IndexTerms builds a weighted, pre-tokenised term list for a standard.

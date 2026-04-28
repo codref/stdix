@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stdix/stdix/internal/db"
-	"github.com/stdix/stdix/internal/registry"
+	"github.com/codref/stdix/internal/db"
+	"github.com/codref/stdix/internal/registry"
 )
 
 func testdataPath(parts ...string) string {
