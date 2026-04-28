@@ -42,10 +42,6 @@ func Default() *Config {
 	return &Config{
 		Registry: Registry{
 			Source: "local",
-			DB:     "./testdata/registry.db",
-		},
-		Project: Project{
-			Language: "auto",
 		},
 		Outputs: Outputs{
 			Agents:  true,
