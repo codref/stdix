@@ -27,5 +27,6 @@ func init() {
 		applyCmd(),
 		deployCmd(),
 		pushCmd(),
+		scaffoldCmd(),
 	)
 }
