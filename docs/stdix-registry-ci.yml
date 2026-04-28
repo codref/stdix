@@ -26,17 +26,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download stdix-build
-        run: |
-          TAG=$(curl -fsSL https://api.github.com/repos/stdix/stdix/releases/latest \
-            | grep '"tag_name"' | head -1 \
-            | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/')
-          curl -fsSL -o /tmp/stdix-build \
-            "https://github.com/stdix/stdix/releases/download/${TAG}/stdix-build-linux-amd64"
-          chmod +x /tmp/stdix-build
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Install stdix-build
+        run: go install github.com/codref/stdix/cmd/stdix-build@latest
 
       - name: Validate
-        run: /tmp/stdix-build validate --registry .
+        run: stdix-build validate --registry .
 
   build:
     name: Build and release registry.db
@@ -47,14 +45,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download stdix-build
-        run: |
-          TAG=$(curl -fsSL https://api.github.com/repos/stdix/stdix/releases/latest \
-            | grep '"tag_name"' | head -1 \
-            | sed 's/.*"tag_name": *"\([^"]*\)".*/\1/')
-          curl -fsSL -o /tmp/stdix-build \
-            "https://github.com/stdix/stdix/releases/download/${TAG}/stdix-build-linux-amd64"
-          chmod +x /tmp/stdix-build
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+
+      - name: Install stdix-build
+        run: go install github.com/codref/stdix/cmd/stdix-build@latest
 
       - name: Compute registry version
         id: version
@@ -63,7 +59,7 @@ jobs:
 
       - name: Build registry.db
         run: |
-          /tmp/stdix-build build \
+          stdix-build build \
             --registry . \
             --out registry.db \
             --version "${{ steps.version.outputs.version }}"
