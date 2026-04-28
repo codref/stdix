@@ -11,7 +11,9 @@ import (
 )
 
 func initCmd() *cobra.Command {
-	return &cobra.Command{
+	var registryURL string
+
+	c := &cobra.Command{
 		Use:   "init",
 		Short: "Initialise stdix in the current directory",
 		Long:  `Creates a .stdix.yaml configuration file in the current working directory.`,
@@ -32,6 +34,10 @@ func initCmd() *cobra.Command {
 			}
 
 			cfg := config.Default()
+			if registryURL != "" {
+				cfg.Registry.Source = "remote"
+				cfg.Registry.URL = registryURL
+			}
 			if err := config.Save(cwd, cfg); err != nil {
 				return err
 			}
@@ -39,4 +45,7 @@ func initCmd() *cobra.Command {
 			return nil
 		},
 	}
+
+	c.Flags().StringVar(&registryURL, "registry-url", "", "URL of the registry.db to use (sets source: remote)")
+	return c
 }
