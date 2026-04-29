@@ -22,7 +22,7 @@ Determine where to write the file:
 
 1. Check if `../stdix-registry/standards/` exists (the cloned remote registry).
 2. If it exists, write there → this is the **remote registry** path.
-3. If it does not exist, fall back to `testdata/stdix-registry/standards/` → the **local testdata** path.
+3. If it does not exist, create the file in `.stdix/standards/` → this is the **local registry** path.
 
 If using the remote registry path, you will commit and push at the end.
 

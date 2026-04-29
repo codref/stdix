@@ -1,12 +1,12 @@
 ---
-description: "Create a new stdix standard YAML file and push it to the registry. Use when you want to add a standard, write a rule file, or define coding standards for a language or topic."
+description: "Create a new stdix standard YAML file for the registry. Use when you want to add a standard, write a rule file, or define coding standards for a language or topic."
 name: "New stdix Standard"
 argument-hint: "Describe the standard (e.g. 'Python FastAPI REST API conventions')"
 agent: "agent"
 tools: ["create_file", "read_file", "run_in_terminal"]
 ---
 
-Create a new stdix standard YAML file and push it to the registry.
+Create a new stdix standard YAML file, commit it to the registry repo, and rebuild the local database.
 
 ## Input
 
@@ -16,10 +16,20 @@ The user will provide:
 
 If no input is attached, ask the user for a description before proceeding.
 
-## File path convention
+## Registry location
+
+Determine where to write the file:
+
+1. Check if `../stdix-registry/standards/` exists (the cloned remote registry).
+2. If it exists, write there → this is the **remote registry** path.
+3. If it does not exist, create the file in `.stdix/standards/` → this is the **local registry** path.
+
+If using the remote registry path, you will commit and push at the end.
+
+### File path convention
 
 ```
-standards/<language>/<topic>.yaml
+<registry-root>/standards/<language>/<topic>.yaml
 ```
 
 Use `shared/` as the language folder when the standard is language-agnostic.
@@ -57,20 +67,30 @@ outputs:
 - If the user provided example code or conventions, extract rules directly from them.
 - Quote rule strings that contain `:` to keep YAML valid.
 
+## Example output
+
+[testdata/stdix-registry/standards/python/cli.yaml](../../testdata/stdix-registry/standards/python/cli.yaml)
+
 ## Steps
 
 1. Determine `id`, `language`, and file path from the description.
 2. If the user attached example files or code, read them and derive rules from the patterns you observe.
-3. Write the YAML to a temporary path: `/tmp/<id>.yaml`
-4. Push the standard to the registry:
+3. Write the YAML file locally to a temporary path: `/tmp/<id>.yaml`
+   (or `testdata/stdix-registry/standards/<language>/<topic>.yaml` if the user wants to keep it locally).
+4. Run `make db` to validate the YAML and rebuild the local `registry.db`:
    ```sh
-   stdix push /tmp/<id>.yaml
+   make db
+   ```
+   If validation fails, fix the YAML and retry before proceeding.
+5. Push the standard to the remote registry repository:
+   ```sh
+   ./bin/stdix push /tmp/<id>.yaml
    ```
    Requirements:
    - `STDIX_REGISTRY_TOKEN` env var must be set to a GitHub token with `contents:write` on the registry repo.
-   - `registry.repo` must be set in `.stdix.yaml`, or use `--repo owner/stdix-registry`.
+   - `registry.repo` must be set in `.stdix.yaml` (e.g. `owner/stdix-registry`), or use `--repo owner/stdix-registry`.
    - If the token is not set, ask the user to set it: `export STDIX_REGISTRY_TOKEN=<token>`
-5. Confirm the push succeeded and tell the user:
+6. Confirm the push succeeded and tell the user:
    - The registry CI will rebuild `registry.db` automatically.
-   - Once the release is available, run `stdix sync` then `stdix apply <id>` to use it.
-6. Show the user the generated YAML and the `stdix push` output.
+   - Once the release is available, run `stdix sync` to update the local cache.
+7. Show the user the generated YAML and the `stdix push` output.
