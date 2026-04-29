@@ -13,7 +13,9 @@ import (
 var newStandardPrompt []byte
 
 func scaffoldCmd() *cobra.Command {
-	return &cobra.Command{
+	var force bool
+
+	cmd := &cobra.Command{
 		Use:   "scaffold",
 		Short: "Install the stdix Copilot agent prompt into this project",
 		Long: `Writes .github/prompts/new-standard.prompt.md to the current directory.
@@ -33,7 +35,7 @@ push new standards to your registry directly from this project.`,
 				return fmt.Errorf("creating directory: %w", err)
 			}
 
-			if _, err := os.Stat(dest); err == nil {
+			if _, err := os.Stat(dest); err == nil && !force {
 				fmt.Fprintf(cmd.OutOrStdout(), "%s already exists — skipping.\n", dest)
 				return nil
 			}
@@ -47,4 +49,7 @@ push new standards to your registry directly from this project.`,
 			return nil
 		},
 	}
+
+	cmd.Flags().BoolVarP(&force, "force", "f", false, "overwrite existing prompt file")
+	return cmd
 }
