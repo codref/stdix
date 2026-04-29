@@ -16,7 +16,7 @@ REGISTRY_VER    := 1.0.0
 REGISTRY_REMOTE := git@github.com:codref/stdix-registry.git
 REGISTRY_LOCAL  := ../stdix-registry
 
-.PHONY: all build test db clean registry-clone registry-pull registry-push registry-db
+.PHONY: all build test db clean release registry-clone registry-pull registry-push registry-db
 
 all: build
 
@@ -62,6 +62,17 @@ registry-push:
 	git -C $(REGISTRY_LOCAL) add -A
 	git -C $(REGISTRY_LOCAL) commit -m "$(MSG)"
 	git -C $(REGISTRY_LOCAL) push
+
+# ── Release ─────────────────────────────────────────────────────────────────
+
+# Tag and push a new version.
+# Usage: make release V=v0.2.0
+release:
+	@[ -n "$(V)" ] || (echo "usage: make release V=v<major>.<minor>.<patch>"; exit 1)
+	@git diff --quiet && git diff --cached --quiet || (echo "error: working tree is dirty — commit or stash first"; exit 1)
+	git tag $(V)
+	git push origin $(V)
+	@echo "Tagged and pushed $(V)"
 
 clean:
 	rm -rf $(BINARY_DIR)
