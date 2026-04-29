@@ -1,6 +1,7 @@
 package config
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -80,6 +81,43 @@ func Save(dir string, cfg *Config) error {
 func Exists(dir string) bool {
 	_, err := os.Stat(filepath.Join(dir, Filename))
 	return err == nil
+}
+
+// HomeConfigDir returns the directory where the user-level config lives: ~/.stdix.
+func HomeConfigDir() string {
+	home, _ := os.UserHomeDir()
+	return filepath.Join(home, ".stdix")
+}
+
+// SearchPaths returns the ordered list of directories to search for .stdix.yaml,
+// highest priority first. The current working directory wins over the home config.
+func SearchPaths(cwd string) []string {
+	return []string{cwd, HomeConfigDir()}
+}
+
+// LoadAuto searches for .stdix.yaml in the preferred path order — cwd first,
+// then ~/.stdix — and returns the first config found. cwd always wins.
+func LoadAuto(cwd string) (*Config, error) {
+	for _, dir := range SearchPaths(cwd) {
+		cfg, err := Load(dir)
+		if err == nil {
+			return cfg, nil
+		}
+		if !errors.Is(err, os.ErrNotExist) {
+			return nil, err
+		}
+	}
+	return nil, fmt.Errorf("%s not found in cwd or %s", Filename, HomeConfigDir())
+}
+
+// ExistsAny reports whether .stdix.yaml is present in any of the search paths.
+func ExistsAny(cwd string) bool {
+	for _, dir := range SearchPaths(cwd) {
+		if Exists(dir) {
+			return true
+		}
+	}
+	return false
 }
 
 // DBPath returns the path to the local registry.db file.

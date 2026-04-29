@@ -6,9 +6,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/spf13/cobra"
 	"github.com/codref/stdix/internal/config"
 	"github.com/codref/stdix/internal/db"
+	"github.com/spf13/cobra"
 )
 
 func doctorCmd() *cobra.Command {
@@ -21,7 +21,7 @@ func doctorCmd() *cobra.Command {
 			hasError := false
 
 			// 1. .stdix.yaml
-			if config.Exists(cwd) {
+			if config.ExistsAny(cwd) {
 				fmt.Fprintln(out, "  ✓  .stdix.yaml found")
 			} else {
 				fmt.Fprintln(out, "  ✗  .stdix.yaml missing — run 'stdix init'")
