@@ -5,16 +5,18 @@ import (
 	"os"
 	"time"
 
-	"github.com/spf13/cobra"
 	"github.com/codref/stdix/internal/db"
 	"github.com/codref/stdix/internal/registry"
 	"github.com/codref/stdix/internal/search"
+	"github.com/codref/stdix/internal/version"
+	"github.com/spf13/cobra"
 )
 
 func main() {
 	root := &cobra.Command{
-		Use:   "stdix-build",
-		Short: "Build and validate the stdix standards registry database",
+		Use:     "stdix-build",
+		Version: version.Version,
+		Short:   "Build and validate the stdix standards registry database",
 		Long: `stdix-build is the CI-side tool for managing registry.db.
 
 Run 'stdix-build validate' on every pull request.

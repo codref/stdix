@@ -1,12 +1,14 @@
 package cmd
 
 import (
+	"github.com/codref/stdix/internal/version"
 	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "stdix",
-	Short: "Connect your project to engineering standards",
+	Use:     "stdix",
+	Version: version.Version,
+	Short:   "Connect your project to engineering standards",
 	Long: `stdix matches your project against a curated standards registry and
 materialises the relevant standards into AI-agent instruction files
 (AGENTS.md, CLAUDE.md, .github/copilot-instructions.md, .cursor/rules/).`,

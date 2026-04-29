@@ -4,6 +4,8 @@ STDIX_BUILD := $(BINARY_DIR)/stdix-build
 
 GO      := go
 GOFLAGS := CGO_ENABLED=0
+VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
+LDFLAGS := -ldflags "-X github.com/codref/stdix/internal/version.Version=$(VERSION)"
 
 REGISTRY_DIR    := testdata/stdix-registry
 REGISTRY_DB     := testdata/registry.db
@@ -22,11 +24,11 @@ build: $(STDIX) $(STDIX_BUILD)
 
 $(STDIX): $(shell find cmd/stdix internal -name '*.go')
 	@mkdir -p $(BINARY_DIR)
-	$(GOFLAGS) $(GO) build -o $@ ./cmd/stdix
+	$(GOFLAGS) $(GO) build $(LDFLAGS) -o $@ ./cmd/stdix
 
 $(STDIX_BUILD): $(shell find cmd/stdix-build internal -name '*.go')
 	@mkdir -p $(BINARY_DIR)
-	$(GOFLAGS) $(GO) build -o $@ ./cmd/stdix-build
+	$(GOFLAGS) $(GO) build $(LDFLAGS) -o $@ ./cmd/stdix-build
 
 test:
 	$(GOFLAGS) $(GO) test ./...
